@@ -1,4 +1,4 @@
-package szbase32
+package com.sandinh.szbase32
 
 // TODO: don't break on invalid z-base-32 input.
 
