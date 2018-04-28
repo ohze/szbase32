@@ -1,8 +1,8 @@
 val publishSettings = Seq(
   publishTo := sonatypePublishTo.value,
   publishMavenStyle := true,
+  description := "uuid util and z-base-32 encoding in Scala",
   pomExtra :=
-    <description>uuid util and z-base-32 encoding in Scala</description>
     <url>https://github.com/ohze/szbase32</url>
     <licenses>
       <license>
