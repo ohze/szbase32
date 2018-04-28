@@ -1,3 +1,6 @@
 /.idea/
 /.idea_modules/
 /out/
+/target/
+/project/target/
+/project/project/
