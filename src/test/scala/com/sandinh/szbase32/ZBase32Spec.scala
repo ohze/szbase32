@@ -2,7 +2,7 @@ package com.sandinh.szbase32
 
 import org.scalatest.{FlatSpec, Matchers}
 import szbase32.{ZBase32 => Old}
-
+import org.apache.commons.codec.binary.{ZBase32 => Z32CommonsCodec}
 import scala.util.Random
 import ZBase32._
 
@@ -47,6 +47,23 @@ class ZBase32Spec extends FlatSpec with Matchers {
 
       val s = rndChars.take(Random.nextInt(100)).mkString
       decode(s) shouldEqual Old.decode(s)
+    }
+  }
+
+  it should "en/decode same as in zbase32-commons-codec" in {
+    val z = new Z32CommonsCodec()
+
+    def zEncode(bytes: Array[Byte]) = z
+      .encodeAsString(bytes)
+      .takeWhile(c => z.isInAlphabet(c.toByte))
+
+    for (_ <- 0 to 20) {
+      val bytes = new Array[Byte](Random.nextInt(100))
+      Random.nextBytes(bytes)
+      encode(bytes) shouldEqual zEncode(bytes)
+
+      val s = rndChars.take(Random.nextInt(100)).mkString
+      decode(s) shouldEqual z.decode(s)
     }
   }
 
